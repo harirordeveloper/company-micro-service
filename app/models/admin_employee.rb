@@ -1,0 +1,2 @@
+class AdminEmployee < User
+end

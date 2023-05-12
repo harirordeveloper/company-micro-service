@@ -16,8 +16,12 @@ gem 'ruby-kafka'
 gem 'sidekiq', '~> 7.1'
 gem 'redis', '~> 5.0', '>= 5.0.6'
 gem 'dotenv-rails', groups: [:development, :test]
-
-
+gem "bcrypt", "~> 3.1.7"
+gem 'jwt'
+gem 'rack-cors'
+gem 'active_model_serializers'
+gem 'searchkick'
+gem 'elasticsearch', "< 7.14"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
@@ -45,6 +49,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug'
 end
 
 group :development do
