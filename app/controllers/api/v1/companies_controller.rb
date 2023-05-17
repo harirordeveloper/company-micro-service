@@ -19,7 +19,7 @@ class Api::V1::CompaniesController < Api::V1::BaseController
   end
 
   def find_company
-    @company = Company.find_by_id(params[:id])
-    render_error "No company found with the matching ID :: #{params[:id]}", :not_found
+    @company = current_user.company
+    render_error "No company found for the current user!", :not_found if @company.blank?
   end
 end
