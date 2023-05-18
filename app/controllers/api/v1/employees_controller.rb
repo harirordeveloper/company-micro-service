@@ -5,12 +5,17 @@ class Api::V1::EmployeesController < Api::V1::BaseController
   before_action :authorize_admin_user!, except: :index
 
   def index
-    @employees = Employee.search(
-      params[:query],
-      fields: [:first_name, :last_name, :email],
-      match: :word_start,
-      highlight: { tag: '<em>' }
-    )
+    if params[:query].present?
+      @employees = Employee.search(
+        params[:query],
+        fields: [:first_name, :last_name, :email],
+        match: :word_start,
+        highlight: { tag: '<em>' }
+      )
+    else
+      @employees = current_user.company.employees
+    end
+
     render_resource @employees, ::Api::V1::EmployeeSerializer, :ok, true
   end
 
